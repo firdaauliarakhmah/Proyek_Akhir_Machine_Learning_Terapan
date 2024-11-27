@@ -224,7 +224,7 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
      
 2. **Collaborative Filtering**
 
-   Collaborative Filtering adalah teknik rekomendasi yang memberikan saran item kepada pengguna berdasarkan preferensi pengguna lain yang memiliki kesamaan pola atau perilaku dengan pengguna tersebut. Teknik ini biasanya menggunakan data seperti rating yang diberikan oleh pengguna terhadap item (misalnya buku atau film) untuk mengidentifikasi pola atau kesamaan dengan pengguna lainnya. Kemudian, item yang disukai oleh pengguna yang memiliki kesamaan preferensi akan direkomendasikan kepada pengguna yang belum memilih atau memberi rating pada item tersebut.
+   Collaborative Filtering adalah teknik rekomendasi yang memberikan saran item kepada pengguna berdasarkan preferensi pengguna lain yang memiliki kesamaan pola atau perilaku dengan pengguna tersebut. Teknik ini biasanya menggunakan data seperti rating yang diberikan oleh pengguna terhadap item (misalnya buku atau film) untuk mengidentifikasi pola atau kesamaan dengan pengguna lainnya. Kemudian, item yang disukai oleh pengguna yang memiliki kesamaan preferensi akan direkomendasikan kepada pengguna yang belum memilih atau memberi rating pada item tersebut. Pada tahap pembuatan model akan menggunakan kelas `RecommenderNet` dengan `keras model class`
    - Data Preparation
      
      Data preparation dilakukan dengan mengubah fitur `user_id` dan `isbn` pada dataframe ratings menjadi angka indeks (encoding) dalam bentuk integer. Setelah itu, fitur yang telah diubah ini dipetakan kembali ke dalam dataframe ratings. Dari hasil ini, ditemukan bahwa ada 1204 pengguna, 4565 buku, dengan rating terendah sebesar 1 dan rating tertinggi sebesar 10.
@@ -283,7 +283,12 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
    
 2. **Collaborative Filtering**
 
-   -
+   Berdasarkan model machine learning yang telah dibangun menggunakan *embedding layer* dengan optimizer Adam dan fungsi loss binary crossentropy, metrik yang digunakan untuk evaluasi adalah Root Mean Squared Error (RMSE). Nilai RMSE yang rendah menunjukkan bahwa perbedaan antara nilai yang diprediksi oleh model dan nilai observasi yang sebenarnya sangat kecil. Dengan kata lain, semakin kecil nilai RMSE, semakin akurat prediksi model dibandingkan dengan data asli. Berikut ini adalah visualisasi dari hasil training dan validation error menggunakan metrik RMSE, serta grafik yang menunjukkan training dan validation loss selama proses pelatihan.
+
+   <img width="719" alt="22" src="https://github.com/user-attachments/assets/401e5202-2db3-443d-a082-8d834616111d">
+
+   Secara keseluruhan, grafik diatas menunjukkan bahwa model berhasil mempelajari pola dari data dan dapat memberikan hasil yang baik pada data latih maupun data validasi. Penurunan yang stabil pada RMSE dan loss mengindikasikan bahwa model semakin akurat dalam memprediksi hasil.
+
 
 ## Referensi
 [1]. (https://tirto.id/6-alasan-mengapa-minat-baca-masyarakat-indonesia-masih-rendah-gCNE) Sulthoni. -*6 Alasan Mengapa Minat Baca Masyarakat Indonesia Masih Rendah*. tirto.id. https://tirto.id/6-alasan-mengapa-minat-baca-masyarakat-indonesia-masih-rendah-gCNE
