@@ -49,16 +49,16 @@ Data yang digunakan dalam proyek ini adalah *dataset* yang diambil dari Kaggle D
 
 |                         | Keterangan                                                                                                                                                                         |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sumber                  | [Kaggle Dataset: Book Recommendation Dataset](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset 'Build state-of-the-art models for book recommendation system') |
+| Sumber                  | [Kaggle Dataset : Book Recommendation Dataset](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset 'Build state-of-the-art models for book recommendation system') |
 | *Usability*             | 10.00                                                                                                                                                                              |
-| Lisensi                 | [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0 'Creative Common - CC0 1.0 Universal')                                                                      |
+| Lisensi                 | [CC0 : Public Domain](https://creativecommons.org/publicdomain/zero/1.0 'Creative Common - CC0 1.0 Universal')                                                                      |
 | Penilaian/*Rating*      | Silver                                                                                                                                                                             |
 | Jenis dan Ukuran Berkas | zip (25 MB)                                                                                                                                                                        |
 | Tags              | Online Communities, Literature, Art, Recommender Systems, Culture and Humanities                                                                                                                                            |
 
-Dalam dataset tersebut berisi tiga (3) data CSV yaitu `Books.csv`, `Ratings.csv`, `Users.csv`.
+Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, `Users.csv`.
 
-- **Books.csv**, memiliki atribut atau fitur sebagai berikut,
+- **Books.csv**, memiliki atribut sebagai berikut :
   
   <img width="364" alt="1" src="https://github.com/user-attachments/assets/1c83e39e-3192-4882-87c4-0f683d9d7b61">
 
@@ -71,7 +71,7 @@ Dalam dataset tersebut berisi tiga (3) data CSV yaitu `Books.csv`, `Ratings.csv`
   - `Image-URL-M` : URL untuk gambar sampul buku dengan ukuran sedang. Cocok untuk tampilan standar pada aplikasi atau website.
   - `Image-URL-L` : URL untuk gambar sampul buku dengan ukuran besar. Berguna untuk tampilan detail.
   
-- **Ratings.csv**, memiliki atribut atau fitur sebagai berikut,
+- **Ratings.csv**, memiliki atribut sebagai berikut :
 
   <img width="316" alt="2 0" src="https://github.com/user-attachments/assets/9778f6bd-e844-496c-933c-84d1159c48d5">
   
@@ -79,7 +79,7 @@ Dalam dataset tersebut berisi tiga (3) data CSV yaitu `Books.csv`, `Ratings.csv`
   - `ISBN` : Merupakan kode ISBN *(International Standard Book Number)* yang digunakan untuk mengidentifikasi setiap buku secara unik. Setiap ISBN merepresentasikan satu buku yang dapat dinilai oleh pengguna. Atribut ini membantu menghubungkan rating dengan buku yang relevan.
   - `Book-Rating` : Merupakan rating yang diberikan oleh pengguna untuk buku tertentu. Nilai rating bervariasi dari 0 hingga 10, di mana nilai 0 kemungkinan menunjukkan buku yang belum dibaca atau tidak dinilai, sementara nilai yang lebih tinggi mencerminkan tingkat kepuasan pengguna terhadap buku tersebut.
   
-- **Users.csv**, memiliki atribut atau fitur sebagai berikut,
+- **Users.csv**, memiliki atribut sebagai berikut :
   
   <img width="293" alt="3" src="https://github.com/user-attachments/assets/c85e04a7-d63d-463f-84fa-b623d18ea5f2">
   
@@ -89,7 +89,8 @@ Dalam dataset tersebut berisi tiga (3) data CSV yaitu `Books.csv`, `Ratings.csv`
 
 Deskripsi statistik untuk *dataset* `ratings` pada fitur `Book-Rating` dapat dilihat pada gambar di bawah ini.
 
-<img width="209" alt="4" src="https://github.com/user-attachments/assets/c49bba5e-ada5-4323-a35a-83a898b890ad">
+<img width="167" alt="12" src="https://github.com/user-attachments/assets/845cadb9-adb6-400a-bf99-421044aa271c">
+
 
 Dari gambar di atas dapat dilihat bahwa terdapat,
 - Total jumlah data (`count`) sebanyak 1.149.780;
@@ -101,33 +102,121 @@ Dari gambar di atas dapat dilihat bahwa terdapat,
 
 Berikut adalah visualisasi grafik histogram frekuensi sebaran data *rating* pengguna terhadap buku yang sudah pernah dibaca, mulai dari *rating* terendah yaitu 1 hingga *rating* tertinggi yaitu 10.
 
-<img width="431" alt="grafik2" src="https://github.com/user-attachments/assets/e2f88e5e-e640-4328-bb54-0a74e744e149">
+<img width="720" alt="13" src="https://github.com/user-attachments/assets/e0f35fff-236a-4f2b-ae0f-ae458abe8184">
+
 
 Berdasarkan hasil visualisasi grafik histogram "Jumlah Rating Buku", dapat disimpulkan bahwa rating yang paling sering diberikan pada buku yang telah dibaca adalah rating 0, dengan jumlah sekitar lebih dari 700.000. Rating 0 ini dapat menimbulkan bias dan mempengaruhi hasil analisis, sehingga data dengan rating 0 sebaiknya dihapus pada tahap persiapan data.
 
 ## Data Preparation
 Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing terlebih dahulu. Tahap Preprocessing data adalah langkah awal yang sangat penting dalam analisis data atau pemodelan *machine learning*. Proses ini bertujuan untuk memastikan bahwa data yang digunakan untuk pemodelan berada dalam kondisi yang optimal, bebas dari masalah yang dapat mempengaruhi hasil model. Berikut adalah beberapa tahapan umum dalam preprocessing data :
-- **Mengubah Nama Kolom/Atribut/Fitur**
+- **Mengubah Nama Kolom**
   
   Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
   - Books
+
+    <img width="805" alt="5" src="https://github.com/user-attachments/assets/6def0aa4-cec3-403a-93cc-62529f0e8466">
+
   - Ratings
+
+    <img width="226" alt="6" src="https://github.com/user-attachments/assets/c265f6c7-0bf6-4406-ba32-3cfdec90ccba">
+
   - Users
+
+    <img width="263" alt="7" src="https://github.com/user-attachments/assets/40b070a6-b013-4682-a9af-db91ebf9845e">
+
 - **Penggabungan Data ISBN**
   
-  Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi .concatenate yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
+  Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
   
 - **Penggabungan Data User**
 
   Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
 
 Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke tahap data preparation. Di tahap ini, data sudah dalam kondisi yang siap untuk digunakan dalam pemodelan. Proses data preparation sebagai berikut : 
+- **Pengecekkan Missing Value**
 
-## Modeling
--
+  Missing value adalah nilai yang hilang atau tidak ada dalam sebuah dataset. Hal ini terjadi ketika data tidak tersedia atau tidak tercatat untuk suatu entri atau atribut tertentu. Missing value sering ditemukan dalam berbagai bentuk, seperti kosong, NaN (Not a Number), atau null, dan bisa muncul karena berbagai alasan, seperti kesalahan pengumpulan data, ketidaksesuaian antara sumber data, atau kelalaian dalam pencatatan. Pengecekan *missing value* pada *dataframe* dapat dilakukan dengan menggunakan fungsi `.isnull().sum()`, yang akan menghasilkan total jumlah data yang kosong atau hilang (*missing*).
+
+  Pada pembuatan Book Recommendation System ini beberapa data ditemuka terdapat missing value yaitu pada dataframe books, sehingga data yang missing tersebut harus dihapus. Pada dataframe ratings, tidak ditemukan adanya *missing value*. Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan, dan hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
+  
+  <img width="689" alt="8" src="https://github.com/user-attachments/assets/8a3bcb03-eecd-4451-97c5-85fca4ec2912">
+
+  Berdasarkan hasil visualisasi grafik histogram di atas, rating 0 telah di hapus dan distribusi frekuensi data terlihat lebih rapih dan jelas. Terutama pada rating 1 hingga rating 4.
+
+  Missing value selanjutnya ada pada dataframe users. Terdapat sebanyak 110.762 missing value pada fitur `age`. Sehingga mengharuskan data tersebut untuk diisi dengan nilai modus dalam data `age` atau usia. Berikut ini adalah missing value pada data `age`.
+  
+  <img width="135" alt="9" src="https://github.com/user-attachments/assets/48bd1d14-c8e9-4599-a606-86da957640f2">
+
+  Berikut ini adalah hasil visualisasi grafik histogram umur.
+
+  <img width="371" alt="10" src="https://github.com/user-attachments/assets/ba2541d1-49a0-4d46-8b13-94872143d590">
+
+  Dari grafik di atas dapat dilihat bahwa umur pengguna paling banyak berada pada rentang usia 20 hingga 30 tahun.
+
+- **Pengecekkan Duplicate Data**
+
+  Pengecekan data duplikat dilakukan untuk memastikan tidak ada baris atau entri data yang muncul lebih dari sekali, yang dapat memengaruhi hasil analisis. Untuk memeriksa adanya data duplikat atau data yang sama dalam sebuah dataframe, kita dapat menggunakan fungsi `.duplicated().sum()`. Berikut ini adalah hasil pengecekan duplicate pada setiap data yang digunakan.
+  
+  <img width="232" alt="11" src="https://github.com/user-attachments/assets/17018bc7-3603-4603-94da-2d61d81c231b">
+
+   Berdasarkan gambar di atas, dapat disimpulkan bahwa data telah bersih dari duplikasi. Hal ini menunjukkan bahwa setiap baris data kini bersifat unik, tanpa adanya pengulangan entri. Dengan demikian, data siap digunakan untuk analisis atau pemrosesan lebih lanjut tanpa khawatir akan bias akibat adanya data duplikat.
+
+- **Penggabungan Data Buku dan Rating**
+
+  Proses penggabungan (merge) dilakukan untuk mengintegrasikan data dari dataframe buku dan dataframe rating menjadi satu dataframe yang komprehensif. Dengan langkah ini, informasi yang sebelumnya terpisah dapat digabungkan, sehingga mempermudah analisis atau pemodelan lebih lanjut.
+  
+
+## Modeling and Result
+Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai sistem rekomendasi untuk memberikan rekomendasi buku terbaik kepada pengguna, menggunakan beberapa algoritma sistem rekomendasi.  
+
+Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pada masing-masing dataframe (data buku, rating, dan users) sangat besar, mencapai ratusan ribu hingga jutaan baris. Ukuran data yang besar ini dapat meningkatkan biaya pemrosesan, memerlukan waktu yang lebih lama, serta menghabiskan banyak resource, seperti RAM atau GPU. Oleh karena itu, untuk mempermudah dan mempercepat proses pemodelan, data yang digunakan akan dibatasi, yaitu sebanyak 10.000 baris untuk data buku dan 5.000 baris untuk data rating.
+
+1. **Content-Based Filtering**
+
+   - TF-IDF Vectorizer
+
+     TF-IDF (*Term Frequency-Inverse Document Frequency*) adalah teknik yang digunakan untuk mengubah data menjadi bentuk numerik agar dapat dianalisis oleh sistem. Dengan menggunakan TF-IDF Vectorizer, data diubah menjadi representasi angka dalam bentuk matriks. Dalam kasus ini, matriks yang dihasilkan memiliki ukuran 10.000 baris data buku dan 5.575 kolom yang merepresentasikan kata-kata unik dari penulis atau deskripsi buku.
+     
+     <img width="770" alt="14" src="https://github.com/user-attachments/assets/d7b04685-df4a-41d7-ae89-fd2bf9c19284">
+
+   - Cosine Similarity
+     
+     Cosine Similarity digunakan untuk mengukur tingkat kesamaan antara dua vektor, dalam hal ini adalah representasi buku yang dihasilkan dari TF-IDF. Nilainya berkisar antara -1 hingga 1, di mana:
+     - 1 menunjukkan kesamaan penuh
+     - 0 menunjukkan tidak ada kesamaan
+     - -1 menunjukkan perbedaan penuh.
+     
+     Metode ini sangat berguna dalam Content-Based Filtering karena membantu menghitung kemiripan antara buku yang berbeda berdasarkan atribut seperti deskripsi atau genre. Cosine Similarity akan melakukan perhitungan derajat kesamaan (similarity degree) antar judul buku. Ukuran matriks yang diperoleh adalah sebesar 10.000 data buku dan 10.000 data buku juga.
+     
+     <img width="767" alt="15" src="https://github.com/user-attachments/assets/3c6d9085-2b0f-47a8-82d8-01f370f3d579">
+
+     
+   - Top-N Recommendation
+     Top-N Recommendation adalah langkah akhir dalam sistem rekomendasi di mana algoritma memilih sejumlah buku (N) dengan nilai kesamaan tertinggi terhadap buku yang sedang dicari atau yang sudah dinikmati oleh pengguna. Buku-buku ini disusun berdasarkan skor kesamaan, sehingga sistem dapat memberikan rekomendasi yang paling relevan dan menarik bagi pengguna. Hasil pengujian sistem rekomendasi dengan pendekatan content-based recommendation adalah sebagai berikut.
+
+     <img width="773" alt="16" src="https://github.com/user-attachments/assets/4c53f51b-55fc-45fa-a546-f93e705d9069">
+
+     Gambar diatas menunjukan data berdasarkan judul buku yang dipilih oleh pengguna.
+  
+     <img width="290" alt="17" src="https://github.com/user-attachments/assets/870679e3-26a7-4c9f-9e40-2c130afbee43">
+
+
+     Sistem yang telah dibangun berhasil memberikan rekomendasi beberapa judul buku berdasarkan input judul buku "Proxies", dan menghasilkan daftar buku yang relevan berdasarkan perhitungan yang dilakukan oleh sistem.
+     
+1. **Collaborative Filtering**
+
+   - Data Preparation
+   - Spliting Data (Train dan Validation)
+   - Recommendation Testing
    
 ## Evaluation
--
+1. **Content-Based Filtering**
+
+   -
+   
+2. **Collaborative Filtering**
+
+   -
 
 ## Referensi
 [1]. (https://tirto.id/6-alasan-mengapa-minat-baca-masyarakat-indonesia-masih-rendah-gCNE) Sulthoni. -*6 Alasan Mengapa Minat Baca Masyarakat Indonesia Masih Rendah*. tirto.id. https://tirto.id/6-alasan-mengapa-minat-baca-masyarakat-indonesia-masih-rendah-gCNE
