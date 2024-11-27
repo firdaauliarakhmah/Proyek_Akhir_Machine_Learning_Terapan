@@ -297,6 +297,10 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
 
    Secara keseluruhan, grafik diatas menunjukkan bahwa model berhasil mempelajari pola dari data dan dapat memberikan hasil yang baik pada data latih maupun data validasi. Penurunan yang stabil pada RMSE dan loss mengindikasikan bahwa model semakin akurat dalam memprediksi hasil.
 
+## Kesimpulan
+Kesimpulannya, model yang dibangun untuk merekomendasikan buku menggunakan dua pendekatan, yaitu **Content-based Recommendation** dan **Collaborative Filtering Recommendation**, telah berhasil dikembangkan dan mampu memberikan rekomendasi yang sesuai dengan preferensi pengguna. Pada pendekatan **Collaborative Filtering**, sistem membutuhkan data rating yang diberikan oleh pengguna untuk menentukan kesamaan preferensi antara pengguna yang satu dengan pengguna lainnya, dan berdasarkan informasi ini, rekomendasi dapat diberikan. Sementara itu, pada pendekatan **Content-based Filtering**, data rating tidak diperlukan. Sistem ini mengandalkan analisis terhadap atribut atau konten dari masing-masing buku, seperti genre, deskripsi, dan penulis, untuk memberikan rekomendasi yang relevan berdasarkan buku yang sudah dibaca oleh pengguna.
+
+Kedua pendekatan tersebut memiliki kelebihan dan kekurangannya masing-masing. **Collaborative Filtering** cenderung memberikan rekomendasi yang lebih beragam karena mempertimbangkan pola preferensi pengguna lain, namun dapat menghadapi masalah ketika data rating terbatas atau baru. Di sisi lain, **Content-based Filtering** memberikan rekomendasi yang lebih spesifik berdasarkan atribut buku, namun cenderung membatasi keberagaman karena hanya merekomendasikan buku yang serupa dengan yang sudah dibaca sebelumnya. Meskipun begitu, kedua teknik ini saling melengkapi dan dapat memberikan sistem rekomendasi yang lebih efektif jika digabungkan.
 
 ## Referensi
 [1]. (https://tirto.id/6-alasan-mengapa-minat-baca-masyarakat-indonesia-masih-rendah-gCNE) Sulthoni. -*6 Alasan Mengapa Minat Baca Masyarakat Indonesia Masih Rendah*. tirto.id. https://tirto.id/6-alasan-mengapa-minat-baca-masyarakat-indonesia-masih-rendah-gCNE
