@@ -266,7 +266,7 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
   Kelebihan dan kekurangan Collaborative Filtering : 
        
        Kelebihan :
-       1. Tidak membutuhkan pemahaman mendalam mengenai konten item yang dianalisis (misalnya, genre buku atau tema film). Hanya berdasarkan data interaksi antar pengguna dan item.
+       1. Tidak membutuhkan pemahaman mendalam mengenai konten item yang dianalisis.
        2. Dapat Menemukan Rekomendasi Baru.
        3. Bisa memberikan rekomendasi yang lebih beragam dan tidak terbatas pada item serupa dengan yang sudah ada.
       
