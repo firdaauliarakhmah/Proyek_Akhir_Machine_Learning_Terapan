@@ -279,11 +279,19 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
 ## Evaluation
 1. **Content-Based Filtering**
 
-   -
+   Sistem rekomendasi Content-Based Filtering yang dibangun berhasil memberikan rekomendasi buku berdasarkan kemiripan konten antara buku yang telah dibaca pengguna dengan buku lainnya. Masih menggunakan data yang sama pada tahap [Modeling](#modeling 'Modeling') *content-based recommendation*, pada proses Hasil *Top-N Recommendation*, yaitu penulis buku atau `book_author` Laura, akan dilakuakn proses pencarian jumlah judul buku atau `book_title` dengan penulis atau *author* yang sama. Pencarian tersebut menggunakan variabel baru yang di mana akan mengambil sebuah data buku yang telah dibaca oleh pengguna. Hasil dari Top-N Recommendation mendapatka beberapa rekomendasi judul buku seperti pada gambar berikut :
    
-2. **Collaborative Filtering**
+   <img width="290" alt="17" src="https://github.com/user-attachments/assets/5656552e-87c9-413c-aad3-fc8624fa2251">
+   
+3. **Collaborative Filtering**
 
-   Berdasarkan model machine learning yang telah dibangun menggunakan *embedding layer* dengan optimizer Adam dan fungsi loss binary crossentropy, metrik yang digunakan untuk evaluasi adalah Root Mean Squared Error (RMSE). Nilai RMSE yang rendah menunjukkan bahwa perbedaan antara nilai yang diprediksi oleh model dan nilai observasi yang sebenarnya sangat kecil. Dengan kata lain, semakin kecil nilai RMSE, semakin akurat prediksi model dibandingkan dengan data asli. Berikut ini adalah visualisasi dari hasil training dan validation error menggunakan metrik RMSE, serta grafik yang menunjukkan training dan validation loss selama proses pelatihan.
+   Berdasarkan model machine learning yang telah dibangun menggunakan *embedding layer* dengan optimizer Adam dan fungsi loss binary crossentropy, metrik yang digunakan untuk evaluasi adalah Root Mean Squared Error (RMSE). Perhitungan RMSE dapat dilakukan menggunakan rumus berikut :
+   
+   $$RMSE=\sqrt{\sum^{n}_{i=1} \frac{y_i - y\\_pred_i}{n}}$$
+   
+   Di mana, nilai $n$ merupakan jumlah *dataset*, nilai $y_i$ adalah nilai sebenarnya, dan $y\\_pred$ yaitu nilai prediksinya terdahap $i$ sebagai urutan data dalam *dataset*.
+   
+   Nilai RMSE yang rendah menunjukkan bahwa perbedaan antara nilai yang diprediksi oleh model dan nilai observasi yang sebenarnya sangat kecil. Dengan kata lain, semakin kecil nilai RMSE, semakin akurat prediksi model dibandingkan dengan data asli. Berikut ini adalah visualisasi dari hasil training dan validation error menggunakan metrik RMSE, serta grafik yang menunjukkan training dan validation loss selama proses pelatihan.
 
    <img width="719" alt="22" src="https://github.com/user-attachments/assets/401e5202-2db3-443d-a082-8d834616111d">
 
