@@ -164,7 +164,9 @@ Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke t
 - **Penggabungan Data Buku dan Rating**
 
   Proses penggabungan (merge) dilakukan untuk mengintegrasikan data dari dataframe buku dan dataframe rating menjadi satu dataframe yang komprehensif. Dengan langkah ini, informasi yang sebelumnya terpisah dapat digabungkan, sehingga mempermudah analisis atau pemodelan lebih lanjut.
-  
+
+  <img width="809" alt="18" src="https://github.com/user-attachments/assets/8363f9dc-38ad-48b8-8b04-6e494abbfc73">
+
 
 ## Modeling and Result
 Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai sistem rekomendasi untuk memberikan rekomendasi buku terbaik kepada pengguna, menggunakan beberapa algoritma sistem rekomendasi.  
@@ -172,7 +174,11 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
 Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pada masing-masing dataframe (data buku, rating, dan users) sangat besar, mencapai ratusan ribu hingga jutaan baris. Ukuran data yang besar ini dapat meningkatkan biaya pemrosesan, memerlukan waktu yang lebih lama, serta menghabiskan banyak resource, seperti RAM atau GPU. Oleh karena itu, untuk mempermudah dan mempercepat proses pemodelan, data yang digunakan akan dibatasi, yaitu sebanyak 10.000 baris untuk data buku dan 5.000 baris untuk data rating.
 
 1. **Content-Based Filtering**
+   
+   Content-based filtering adalah teknik rekomendasi yang menganalisis konten atau fitur dari item yang ada (misalnya, genre, deskripsi, atau id dari buku) untuk memberikan rekomendasi. Pada tahap ini, sistem rekomendasi dikembangkan dengan menggunakan teknik content-based filtering. Teknik ini berfokus pada merekomendasikan item yang memiliki kesamaan dengan item yang sudah disukai atau dipilih oleh pengguna sebelumnya. Dalam hal ini, jika pengguna menyukai buku tertentu, sistem akan mencari buku lain yang memiliki kesamaan dengan buku tersebut berdasarkan konten atau fitur yang ada.
 
+   Dalam sistem ini, representasi fitur penting dari setiap item, seperti deskripsi buku atau kategori, diubah menjadi bentuk numerik menggunakan teknik TF-IDF Vectorizer. Kemudian, tingkat kesamaan antara item dihitung menggunakan Cosine Similarity, yang mengukur seberapa mirip dua item berdasarkan vektornya.
+      
    - TF-IDF Vectorizer
 
      TF-IDF (*Term Frequency-Inverse Document Frequency*) adalah teknik yang digunakan untuk mengubah data menjadi bentuk numerik agar dapat dianalisis oleh sistem. Dengan menggunakan TF-IDF Vectorizer, data diubah menjadi representasi angka dalam bentuk matriks. Dalam kasus ini, matriks yang dihasilkan memiliki ukuran 10.000 baris data buku dan 5.575 kolom yang merepresentasikan kata-kata unik dari penulis atau deskripsi buku.
@@ -192,6 +198,7 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
 
      
    - Top-N Recommendation
+
      Top-N Recommendation adalah langkah akhir dalam sistem rekomendasi di mana algoritma memilih sejumlah buku (N) dengan nilai kesamaan tertinggi terhadap buku yang sedang dicari atau yang sudah dinikmati oleh pengguna. Buku-buku ini disusun berdasarkan skor kesamaan, sehingga sistem dapat memberikan rekomendasi yang paling relevan dan menarik bagi pengguna. Hasil pengujian sistem rekomendasi dengan pendekatan content-based recommendation adalah sebagai berikut.
 
      <img width="773" alt="16" src="https://github.com/user-attachments/assets/4c53f51b-55fc-45fa-a546-f93e705d9069">
@@ -203,12 +210,72 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
 
      Sistem yang telah dibangun berhasil memberikan rekomendasi beberapa judul buku berdasarkan input judul buku "Proxies", dan menghasilkan daftar buku yang relevan berdasarkan perhitungan yang dilakukan oleh sistem.
      
-1. **Collaborative Filtering**
+  Kelebihan dan kekurangan Content-based Filtering : 
+       
+       Kelebihan :
+       1. Rekomendasi sangat dipersonalisasi berdasarkan preferensi pengguna sebelumnya, yang memastikan relevansi yang lebih tinggi.
+       2. Tidak bergantung pada perilaku pengguna lain, sehingga bisa memberikan rekomendasi meskipun data pengguna terbatas.
+       3. Mudah diimplementasi.
+      
+       Kekurangan :
+       1. Hanya bisa merekomendasikan item yang mirip dengan yang sudah disukai pengguna, sehingga tidak bisa memberikan rekomendasi yang lebih beragam atau eksploratif.
+       2. Sistem cenderung merekomendasikan item yang serupa dengan yang telah ada, yang bisa membatasi variasi rekomendasi dan tidak membantu pengguna menemukan item yang berbeda atau baru.
+       3. Jika item baru tidak memiliki cukup data atau deskripsi, sistem kesulitan memberikan rekomendasi yang relevan.
+     
+2. **Collaborative Filtering**
 
+   Collaborative Filtering adalah teknik rekomendasi yang memberikan saran item kepada pengguna berdasarkan preferensi pengguna lain yang memiliki kesamaan pola atau perilaku dengan pengguna tersebut. Teknik ini biasanya menggunakan data seperti rating yang diberikan oleh pengguna terhadap item (misalnya buku atau film) untuk mengidentifikasi pola atau kesamaan dengan pengguna lainnya. Kemudian, item yang disukai oleh pengguna yang memiliki kesamaan preferensi akan direkomendasikan kepada pengguna yang belum memilih atau memberi rating pada item tersebut.
    - Data Preparation
+     
+     Data preparation dilakukan dengan mengubah fitur `user_id` dan `isbn` pada dataframe ratings menjadi angka indeks (encoding) dalam bentuk integer. Setelah itu, fitur yang telah diubah ini dipetakan kembali ke dalam dataframe ratings. Dari hasil ini, ditemukan bahwa ada 1204 pengguna, 4565 buku, dengan rating terendah sebesar 1 dan rating tertinggi sebesar 10.
+     
+     <img width="365" alt="19" src="https://github.com/user-attachments/assets/bf9268d3-268f-42da-ac9e-6edda5beb3bb">
+
    - Spliting Data (Train dan Validation)
+     
+     Pada tahap ini, dataframe ratings diacak terlebih dahulu, kemudian data dibagi dengan rasio 80:20, di mana 80% digunakan sebagai data latih (training data) dan 20% sisanya digunakan sebagai data uji (validation data).
+     
+     <img width="277" alt="20" src="https://github.com/user-attachments/assets/2c16c8fd-7d4f-4323-a064-a21b975764b0">
+
    - Recommendation Testing
-   
+     
+     Berdasarkan model yang telah dilatih, berikut ini adalah hasil evaluasi dari sistem rekomendasi buku yang menggunakan pendekatan collaborative filtering recommendation.
+     
+     <img width="652" alt="21" src="https://github.com/user-attachments/assets/bed39d15-9208-4c9a-88de-5c292c387c25">
+
+     Berdasarkan hasil di atas, dapat dilihat bahwa sistem akan mengambil pengguna secara acak, yaitu pengguna dengan `user_id` **278843**. Selanjutnya, sistem akan mencari buku dengan *rating* tertinggi dari pengguna tersebut, yaitu:
+     *   **Divine Secrets of the Ya-Ya Sisterhood : A Novel** oleh **Rebecca Wells**
+     *   **Icy Sparks** oleh **Gwyn Hyman Rubio**
+     *   **The Bonesetter's Daughter** oleh **Amy Tan**
+     *   **The Things They Carried** oleh **Tim O'Brien**  
+
+      Kemudian, sistem akan membandingkan antara buku dengan *rating* tertinggi dari pengguna tersebut dan semua buku lainnya yang belum pernah dibaca, lalu mengurutkan buku yang akan direkomendasikan berdasarkan nilai prediksi rekomendasi tertinggi. Terdapat 10 daftar buku yang direkomendasikan oleh sistem, yaitu:
+      *   **To Kill a Mockingbird** oleh **Harper Lee**  
+      *   **The Secret Life of Bees** oleh **Sue Monk Kidd**  
+      *   **The Bean Trees** oleh **Barbara Kingsolver**  
+      *   **Life of Pi** oleh **Yann Martel**  
+      *   **Chasing the Dime** oleh **Michael Connelly**  
+      *   **A Walk in the Woods: Rediscovering America on the Appalachian Trail** oleh **Bill Bryson**  
+      *   **The Cabinet of Curiosities** oleh **Douglas Preston**  
+      *   **Wuthering Heights** oleh **Emily Bronte**  
+      *   **The Visitor (Animorphs, No 2)** oleh **K. A. Applegate**  
+      *   **The King of Torts** oleh **John Grisham**  
+
+      Dapat dibandingkan antara daftar ***Book with high ratings from user*** dan ***Top 10 Books Recommendation***, terdapat beberapa kesesuaian pola rekomendasi berdasarkan preferensi pengguna. Hal ini menunjukkan bahwa sistem yang dibangun dapat memberikan rekomendasi buku kepada pengguna dengan hasil yang relevan dan sesuai prediksi.
+
+  Kelebihan dan kekurangan Collaborative Filtering : 
+       
+       Kelebihan :
+       1. Tidak membutuhkan pemahaman mendalam mengenai konten item yang dianalisis (misalnya, genre buku atau tema film). Hanya berdasarkan data interaksi antar pengguna dan item.
+       2. Dapat Menemukan Rekomendasi Baru.
+       3. Bisa memberikan rekomendasi yang lebih beragam dan tidak terbatas pada item serupa dengan yang sudah ada.
+      
+       Kekurangan :
+       1. Sistem kesulitan memberikan rekomendasi untuk pengguna baru (user cold start) atau item baru (item cold start) yang tidak memiliki cukup data interaksi untuk dianalisis.
+       2. Ketika jumlah item sangat besar, komputasi untuk mencari kesamaan antar pengguna atau item bisa menjadi sangat berat dan memerlukan waktu serta sumber daya yang besar.
+       3. Jika item sedikit sistem bisa kesulitan dalam menghasilkan rekomendasi yang akurat.
+
+       
 ## Evaluation
 1. **Content-Based Filtering**
 
