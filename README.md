@@ -108,7 +108,7 @@ Berikut adalah visualisasi grafik histogram frekuensi sebaran data *rating* peng
 Berdasarkan hasil visualisasi grafik histogram "Jumlah Rating Buku", dapat disimpulkan bahwa rating yang paling sering diberikan pada buku yang telah dibaca adalah rating 0, dengan jumlah sekitar lebih dari 700.000. Rating 0 ini dapat menimbulkan bias dan mempengaruhi hasil analisis, sehingga data dengan rating 0 sebaiknya dihapus pada tahap persiapan data.
 
 ## Data Preparation
-Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing terlebih dahulu. Tahap Preprocessing data adalah langkah awal yang sangat penting dalam analisis data atau pemodelan *machine learning*. Proses ini bertujuan untuk memastikan bahwa data yang digunakan untuk pemodelan berada dalam kondisi yang optimal, bebas dari masalah yang dapat mempengaruhi hasil model. Berikut adalah beberapa tahapan umum dalam preprocessing data :
+Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing terlebih dahulu. Tahap Preprocessing data adalah langkah awal yang sangat penting dalam analisis data atau pemodelan *machine learning*. Proses ini bertujuan untuk memastikan bahwa data yang digunakan untuk pemodelan berada dalam kondisi yang optimal, bebas dari masalah yang dapat mempengaruhi hasil model. Berikut adalah beberapa tahapan umum dalam **preprocessing data** :
 - **Mengubah Nama Kolom**
   
   Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
@@ -132,7 +132,7 @@ Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing 
 
   Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
 
-Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke tahap data preparation. Di tahap ini, data sudah dalam kondisi yang siap untuk digunakan dalam pemodelan. Proses data preparation sebagai berikut : 
+Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke tahap data preparation. Di tahap ini, data sudah dalam kondisi yang siap untuk digunakan dalam pemodelan. Proses data **preparation** sebagai berikut : 
 - **Pengecekkan Missing Value**
 
   Missing value adalah nilai yang hilang atau tidak ada dalam sebuah dataset. Hal ini terjadi ketika data tidak tersedia atau tidak tercatat untuk suatu entri atau atribut tertentu. Missing value sering ditemukan dalam berbagai bentuk, seperti kosong, NaN (Not a Number), atau null, dan bisa muncul karena berbagai alasan, seperti kesalahan pengumpulan data, ketidaksesuaian antara sumber data, atau kelalaian dalam pencatatan. Pengecekan *missing value* pada *dataframe* dapat dilakukan dengan menggunakan fungsi `.isnull().sum()`, yang akan menghasilkan total jumlah data yang kosong atau hilang (*missing*).
