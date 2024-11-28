@@ -206,49 +206,108 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
   <img width="809" alt="18" src="https://github.com/user-attachments/assets/8363f9dc-38ad-48b8-8b04-6e494abbfc73">
 
 ## Data Preparation
-Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing terlebih dahulu. Tahap Preprocessing data adalah langkah awal yang sangat penting dalam analisis data atau pemodelan *machine learning*. Proses ini bertujuan untuk memastikan bahwa data yang digunakan untuk pemodelan berada dalam kondisi yang optimal, bebas dari masalah yang dapat mempengaruhi hasil model. Berikut adalah beberapa tahapan umum dalam **preprocessing data** :
+Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi format yang sesuai untuk proses pemodelan. Tahap ini sangat penting untuk memastikan bahwa model dapat bekerja secara optimal dengan data yang bersih, terstruktur, dan relevan. Proses data preparation melibatkan beberapa langkah utama, yaitu:
+1. **Content-Based Filtering**
 
-Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke tahap **data preparation**. Di tahap ini, data sudah dalam kondisi yang siap untuk digunakan dalam pemodelan. **Proses data preparation sebagai berikut** : 
+   Pada metode content-based recommendation, dilakukan analisis terhadap deskripsi atau informasi terkait item untuk menemukan item lain yang serupa berdasarkan konten. Salah satu pendekatan yang digunakan adalah dengan menerapkan TF-IDF (Term Frequency-Inverse Document Frequency). *Term Frequency Inverse Document Frequency Vectorizer* `TF-IDF Vectorizer` *Algorithm* merupakan algoritma yang dapat melakukan kalkulasi dan transformasi dari teks mentah menjadi representasi angka yang memiliki makna tertentu dalam bentuk matriks serta dapat digunakan dan dimengerti oleh model *machine learning*. Berikut adalah tahapan yang dilakukan :
 
+   - Inisialisasi dan Penerapan TF-IDF Vectorizer
+
+     Pada tahap pertama, menginisialisasi objek `TfidfVectorizer()` untuk mengubah data teks, dalam hal ini penulis buku (`book_author`), menjadi representasi numerik berbasis TF-IDF. Proses ini bertujuan untuk menilai pentingnya setiap kata dalam konteks keseluruhan kumpulan buku.
+     
+     <img width="316" alt="f" src="https://github.com/user-attachments/assets/dd8f6e4d-7201-46e5-b6f4-50938bbd8f2a">
+
+   - Membuat Matriks TF-IDF
+
+     Selanjutnya, menerapkan TF-IDF pada kolom penulis buku (`book_author`) untuk membuat matriks TF-IDF yang merepresentasikan setiap penulis dalam bentuk vektor. Matriks ini akan memiliki dimensi sesuai dengan jumlah kata unik yang ditemukan pada data.
+     
+     <img width="694" alt="g" src="https://github.com/user-attachments/assets/e6d2d0e1-461b-4d6d-9dfb-1fadcf2d1f20">
+
+   - Konversi Matriks TF-IDF ke Bentuk Dense
+
+     Matriks TF-IDF yang terbentuk pada tahap sebelumnya disimpan dalam bentuk sparse matrix. Untuk mempermudah interpretasi, selanjutnya mengonversinya menjadi matriks padat (dense matrix) agar dapat lebih mudah dianalisis.
+     
+     <img width="407" alt="h" src="https://github.com/user-attachments/assets/38070c41-7375-4592-ab79-c02570a5546a">
+
+   - Melihat Matriks TF-IDF
+
+     Matriks TF-IDF yang telah dibentuk kemudian dapat divisualisasikan menggunakan `pandas.DataFrame` untuk melihat bagaimana kata-kata pada penulis buku terdistribusi. Kolom-kolom mewakili kata-kata unik (fitur) yang ada dalam data, sementara baris mewakili judul buku. Hasil ini memungkinkan kita untuk memeriksa seberapa signifikan setiap kata untuk setiap buku.
+     
+     <img width="768" alt="i" src="https://github.com/user-attachments/assets/dbed433a-8886-4840-a84d-c7294c690b52">
+
+2. **Collaborative Filtering**
+
+   Sistem rekomendasi penyaringan kolaboratif (*Collaborative Filtering Recommendation*) adalah teknik yang memberikan rekomendasi item berdasarkan preferensi pengguna di masa lalu, misalnya dengan menggunakan *rating* yang telah diberikan oleh pengguna, serta menyarankan item yang mirip dengan pola preferensi pengguna lainnya. Berikut adalah tahapan yang dilakukan :
+     - Melakukan encoding pada `user_id`
+       
+       Encoding adalah proses konversi data kategorikal (seperti ID atau label dalam bentuk teks) menjadi format numerik, yang diperlukan oleh algoritma pembelajaran mesin (machine learning). Mengubah ID pengguna yang bersifat unik dan kategorikal menjadi angka. Hal ini membantu model untuk memahami dan mengolah interaksi antara pengguna dan buku. Misalnya, pengguna dengan ID `user_1` bisa diwakili dengan angka 0, `user_2` dengan angka 1, dan seterusnya.
+       
+       <img width="927" alt="j" src="https://github.com/user-attachments/assets/f666d51c-b40e-49f4-9f46-130e800e6789">
+
+     - Melakukan encoding pada `ISBN`
+       
+       Sama seperti `user_id`, ID buku (ISBN) yang bersifat kategorikal diubah menjadi angka. Setiap buku diberikan ID unik berbentuk angka, yang memudahkan model dalam mengidentifikasi dan memproses hubungan antara pengguna dan buku.
+       
+       <img width="924" alt="k" src="https://github.com/user-attachments/assets/36f383ca-de1a-45ca-86e2-5ccabe8fce41">
+
+     - Memetakan `user_id` dan `isbn` ke dalam data frame
+
+       Setelah memiliki kamus encoding untuk pengguna dan buku, langkah selanjutnya adalah mengganti nilai pada kolom user_id dan isbn di dataset dengan ID numerik yang sudah kita buat.
+       
+       <img width="286" alt="l" src="https://github.com/user-attachments/assets/e951efc4-2b67-455d-a2d0-371b714181f3">
+
+     - Pengecekan jumlah user, jumlah buku, dan rating minimal & maksimal
+
+       Setelah encoding selesai, selanjutnya dapat menampilkan informasi dasar mengenai data, seperti jumlah pengguna dan buku yang ada dalam dataset, serta rating minimum dan maksimum yang terdapat pada dataset.
+       
+       <img width="561" alt="m" src="https://github.com/user-attachments/assets/9a319a75-343e-4253-a695-05d7b6607843">
+
+     - Shuffling the Data (pengacakan)
+       
+       Data yang diacak (shuffled) digunakan untuk memastikan bahwa data yang digunakan untuk melatih model tidak terurut atau terstruktur dalam cara yang bisa menimbulkan bias. Ini membantu memastikan model belajar dari data yang beragam.
+       
+       <img width="274" alt="n" src="https://github.com/user-attachments/assets/daf8ea9d-cbad-4897-bd33-a946aa12b239">
+
+     - Memisahkan variabel (X) dan target (Y)
+       
+        <img width="442" alt="o" src="https://github.com/user-attachments/assets/61a18b4b-e00c-4b98-8524-21ac1052bf93">
+
+     - Membagi data menjadi training (80) dan validation (20)
+
+       Pembagian data dilakukan untuk melatih model pada training set dan mengevaluasi kinerjanya pada validation set. Data dibagi menjadi 80% untuk training dan 20% untuk validation.
+       
+       <img width="416" alt="p" src="https://github.com/user-attachments/assets/f1e843c1-4d6e-41cf-b91c-de0ba613e6c9">
+
+       
 ## Modeling and Result
 Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai sistem rekomendasi untuk memberikan rekomendasi buku terbaik kepada pengguna, menggunakan beberapa algoritma sistem rekomendasi.  
 
-Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pada masing-masing dataframe (data buku, rating, dan users) sangat besar, mencapai ratusan ribu hingga jutaan baris. Ukuran data yang besar ini dapat meningkatkan biaya pemrosesan, memerlukan waktu yang lebih lama, serta menghabiskan banyak resource, seperti RAM atau GPU. Oleh karena itu, untuk mempermudah dan mempercepat proses pemodelan, data yang digunakan akan dibatasi, yaitu sebanyak 10.000 baris untuk data buku dan 5.000 baris untuk data rating.
-
 1. **Content-Based Filtering**
    
-   Content-based filtering adalah teknik rekomendasi yang menganalisis konten atau fitur dari item yang ada (misalnya, genre, deskripsi, atau id dari buku) untuk memberikan rekomendasi. Pada tahap ini, sistem rekomendasi dikembangkan dengan menggunakan teknik content-based filtering. Teknik ini berfokus pada merekomendasikan item yang memiliki kesamaan dengan item yang sudah disukai atau dipilih oleh pengguna sebelumnya. Dalam hal ini, jika pengguna menyukai buku tertentu, sistem akan mencari buku lain yang memiliki kesamaan dengan buku tersebut berdasarkan konten atau fitur yang ada.
-
-   Dalam sistem ini, representasi fitur penting dari setiap item, seperti deskripsi buku atau kategori, diubah menjadi bentuk numerik menggunakan teknik TF-IDF Vectorizer. Kemudian, tingkat kesamaan antara item dihitung menggunakan Cosine Similarity, yang mengukur seberapa mirip dua item berdasarkan vektornya.
-      
-   - TF-IDF Vectorizer
-
-     TF-IDF (*Term Frequency-Inverse Document Frequency*) adalah teknik yang digunakan untuk mengubah data menjadi bentuk numerik agar dapat dianalisis oleh sistem. Dengan menggunakan TF-IDF Vectorizer, data diubah menjadi representasi angka dalam bentuk matriks. Dalam kasus ini, matriks yang dihasilkan memiliki ukuran 10.000 baris data buku dan 5.575 kolom yang merepresentasikan kata-kata unik dari penulis atau deskripsi buku.
-     
-     <img width="770" alt="14" src="https://github.com/user-attachments/assets/d7b04685-df4a-41d7-ae89-fd2bf9c19284">
-
-   - Cosine Similarity
-     
-     Cosine Similarity digunakan untuk mengukur tingkat kesamaan antara dua vektor, dalam hal ini adalah representasi buku yang dihasilkan dari TF-IDF. Nilainya berkisar antara -1 hingga 1, di mana:
+   Content-based filtering adalah teknik rekomendasi yang mengandalkan informasi atau atribut dari item untuk merekomendasikan item yang serupa berdasarkan preferensi atau interaksi pengguna. Salah satu metode yang sering digunakan dalam content-based filtering adalah Cosine Similarity, yang mengukur seberapa mirip dua item berdasarkan fitur mereka misalnya, deskripsi atau kategori buku.
+   
+   Cosine Similarity digunakan untuk mengukur tingkat kesamaan antara dua vektor, dalam hal ini adalah representasi buku yang dihasilkan dari TF-IDF. Nilainya berkisar antara -1 hingga 1, di mana:
      - 1 menunjukkan kesamaan penuh
      - 0 menunjukkan tidak ada kesamaan
      - -1 menunjukkan perbedaan penuh.
-     
+       
+     Untuk melakukan perhitungan derajat kesamaan (*similarity degree*) antar judul buku dapat dilakukan dengan teknik *cosine similarity* menggunakan fungsi `cosine_similarity` dari library `sklearn`.
+   
+   <img width="317" alt="q" src="https://github.com/user-attachments/assets/76c270b0-ec6f-4cd0-a0c3-426c8206ab98">
+
      Metode ini sangat berguna dalam Content-Based Filtering karena membantu menghitung kemiripan antara buku yang berbeda berdasarkan atribut seperti deskripsi atau genre. Cosine Similarity akan melakukan perhitungan derajat kesamaan (similarity degree) antar judul buku. Ukuran matriks yang diperoleh adalah sebesar 10.000 data buku dan 10.000 data buku juga.
+   
+     <img width="186" alt="r" src="https://github.com/user-attachments/assets/8b3f2d8b-e00b-4f5a-9524-e19b958be0c5">
      
      <img width="767" alt="15" src="https://github.com/user-attachments/assets/3c6d9085-2b0f-47a8-82d8-01f370f3d579">
 
-     
-   - Top-N Recommendation
+     Selanjutnya untuk membuat fungsi rekomendasi. Top-N Recommendation adalah langkah akhir dalam sistem rekomendasi di mana algoritma memilih sejumlah buku (N) dengan nilai kesamaan tertinggi terhadap buku yang sedang dicari atau yang sudah dinikmati oleh pengguna. Buku-buku ini disusun berdasarkan skor kesamaan, sehingga sistem dapat memberikan rekomendasi yang paling relevan dan menarik bagi pengguna. Hasil pengujian sistem rekomendasi dengan pendekatan content-based recommendation adalah sebagai berikut.
 
-     Top-N Recommendation adalah langkah akhir dalam sistem rekomendasi di mana algoritma memilih sejumlah buku (N) dengan nilai kesamaan tertinggi terhadap buku yang sedang dicari atau yang sudah dinikmati oleh pengguna. Buku-buku ini disusun berdasarkan skor kesamaan, sehingga sistem dapat memberikan rekomendasi yang paling relevan dan menarik bagi pengguna. Hasil pengujian sistem rekomendasi dengan pendekatan content-based recommendation adalah sebagai berikut.
+     <img width="934" alt="s" src="https://github.com/user-attachments/assets/2bf66154-5221-4a52-aa81-b3929fb6e735">
 
-     <img width="773" alt="16" src="https://github.com/user-attachments/assets/4c53f51b-55fc-45fa-a546-f93e705d9069">
-
-     Gambar diatas menunjukan data berdasarkan judul buku yang dipilih oleh pengguna.
+     Gambar diatas menunjukan data berdasarkan detail buku yang telah dibaca berdasarkan readed_book_title yaitu `Proxies. berikut ini pencarian yang direkomendasikan yang paling mirip dengan buku "Proxies" : 
   
      <img width="290" alt="17" src="https://github.com/user-attachments/assets/870679e3-26a7-4c9f-9e40-2c130afbee43">
-
 
      Sistem yang telah dibangun berhasil memberikan rekomendasi beberapa judul buku berdasarkan input judul buku "Proxies", dan menghasilkan daftar buku yang relevan berdasarkan perhitungan yang dilakukan oleh sistem.
      
@@ -266,23 +325,19 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
      
 2. **Collaborative Filtering**
 
-   Collaborative Filtering adalah teknik rekomendasi yang memberikan saran item kepada pengguna berdasarkan preferensi pengguna lain yang memiliki kesamaan pola atau perilaku dengan pengguna tersebut. Teknik ini biasanya menggunakan data seperti rating yang diberikan oleh pengguna terhadap item (misalnya buku atau film) untuk mengidentifikasi pola atau kesamaan dengan pengguna lainnya. Kemudian, item yang disukai oleh pengguna yang memiliki kesamaan preferensi akan direkomendasikan kepada pengguna yang belum memilih atau memberi rating pada item tersebut. Pada tahap pembuatan model akan menggunakan kelas `RecommenderNet` dengan `keras model class`
-   - Data Preparation
+   Collaborative Filtering adalah teknik rekomendasi yang memberikan saran item kepada pengguna berdasarkan preferensi pengguna lain yang memiliki kesamaan pola atau perilaku dengan pengguna tersebut. Teknik ini biasanya menggunakan data seperti rating yang diberikan oleh pengguna terhadap item misalnya buku untuk mengidentifikasi pola atau kesamaan dengan pengguna lainnya. Kemudian, item yang disukai oleh pengguna yang memiliki kesamaan preferensi akan direkomendasikan kepada pengguna yang belum memilih atau memberi rating pada item tersebut. Pada tahap pembuatan model akan menggunakan kelas `RecommenderNet` dengan `keras model class`
+   
+   - RecommenderNet
+     RecommenderNet adalah model Neural Collaborative Filtering yang dirancang untuk memberikan rekomendasi kepada pengguna berdasarkan interaksi mereka dengan item (seperti buku). Model ini menggunakan embedding untuk memetakan pengguna dan item ke dalam ruang vektor berdimensi rendah, sehingga memungkinkan model untuk menangkap hubungan yang lebih kompleks antara keduanya. Proses utamanya melibatkan vektor embedding untuk pengguna dan item yang dihitung melalui produk titik (dot product), kemudian ditambahkan dengan bias pengguna dan item untuk mengakomodasi preferensi atau popularitas yang lebih umum. Hasil dari interaksi ini diproses dengan fungsi aktivasi sigmoid, yang menghasilkan nilai antara 0 dan 1, mencerminkan kemungkinan apakah seorang pengguna akan menyukai atau berinteraksi dengan item tertentu. Model ini efektif dalam memahami pola preferensi pengguna dan memberikan rekomendasi yang relevan berdasarkan data historis yang ada.
      
-     Data preparation dilakukan dengan mengubah fitur `user_id` dan `isbn` pada dataframe ratings menjadi angka indeks (encoding) dalam bentuk integer. Setelah itu, fitur yang telah diubah ini dipetakan kembali ke dalam dataframe ratings. Dari hasil ini, ditemukan bahwa ada 1204 pengguna, 4565 buku, dengan rating terendah sebesar 1 dan rating tertinggi sebesar 10.
-     
-     <img width="365" alt="19" src="https://github.com/user-attachments/assets/bf9268d3-268f-42da-ac9e-6edda5beb3bb">
-
-   - Spliting Data (Train dan Validation)
-     
-     Pada tahap ini, dataframe ratings diacak terlebih dahulu, kemudian data dibagi dengan rasio 80:20, di mana 80% digunakan sebagai data latih (training data) dan 20% sisanya digunakan sebagai data uji (validation data).
-     
-     <img width="277" alt="20" src="https://github.com/user-attachments/assets/2c16c8fd-7d4f-4323-a064-a21b975764b0">
+     <img width="461" alt="t" src="https://github.com/user-attachments/assets/d0f95c8a-3e79-4000-a3c8-420ab7b4d3c3">
 
    - Recommendation Testing
      
      Berdasarkan model yang telah dilatih, berikut ini adalah hasil evaluasi dari sistem rekomendasi buku yang menggunakan pendekatan collaborative filtering recommendation.
      
+     <img width="425" alt="u" src="https://github.com/user-attachments/assets/6ac75030-6858-4ccd-b290-d73e9a172a1b">
+
      <img width="652" alt="21" src="https://github.com/user-attachments/assets/bed39d15-9208-4c9a-88de-5c292c387c25">
 
      Berdasarkan hasil di atas, dapat dilihat bahwa sistem akan mengambil pengguna secara acak, yaitu pengguna dengan `user_id` **278843**. Selanjutnya, sistem akan mencari buku dengan *rating* tertinggi dari pengguna tersebut, yaitu:
