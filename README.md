@@ -214,7 +214,7 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
 
   - Rating
     
-    Pada dataframe ini memang tidak ditemukan adanya missing value didalamnya. Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan, dan hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
+    Pada dataframe ini memang tidak ditemukan adanya missing value didalamnya. Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan. Data tersebut tidak akan diikutsertakan ke dalam *dataframe*, sehingga data yang diambil adalah data *rating* yang lebih dari 0, yaitu *rating* 1 hingga *rating* 10 saja. Hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
     
     <img width="689" alt="8" src="https://github.com/user-attachments/assets/8a3bcb03-eecd-4451-97c5-85fca4ec2912">
     
