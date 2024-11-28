@@ -131,6 +131,41 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
   - `Location` : Lokasi tempat tinggal pengguna
   - `Age` : Umur pengguna
 
+- **Pengecekkan Missing Value**
+
+  Missing value adalah nilai yang hilang atau tidak ada dalam sebuah dataset. Hal ini terjadi ketika data tidak tersedia atau tidak tercatat untuk suatu entri atau atribut tertentu. Missing value sering ditemukan dalam berbagai bentuk, seperti kosong, NaN (Not a Number), atau null, dan bisa muncul karena berbagai alasan, seperti kesalahan pengumpulan data, ketidaksesuaian antara sumber data, atau kelalaian dalam pencatatan. Pengecekan *missing value* pada *dataframe* dapat dilakukan dengan menggunakan fungsi `.isnull().sum()`, yang akan menghasilkan total jumlah data yang kosong atau hilang (*missing*).
+
+  Pada pembuatan Book Recommendation System ini beberapa data ditemuka terdapat missing value yaitu :
+
+   - Books
+     
+     <img width="92" alt="m1" src="https://github.com/user-attachments/assets/e9efb882-c812-474a-8d6e-d0e5ee4498ff">
+     
+     Berdasarkan hasil di atas, dapat dilihat bahwa pada *dataframe* `books` terdapat beberapa atribut yang memiliki nilai kosong atau *null*, yaitu pada kolom `book_author` sebanyak 2 data, `publisher` sebanyak 2 data, dan `image_l_url` sebanyak 3 data.
+
+   - Rating
+     
+     <img width="100" alt="m2" src="https://github.com/user-attachments/assets/6bbf7c9f-f8d3-40f7-9179-b5a2d4fefd42">
+     
+     Berdasarkan hasil di atas, dapat dilihat bahwa pada *dataframe* `ratings`, tidak ditemukan adanya nilai kosong atau *null* pada setiap kolom atau atributnya.
+
+   - User
+     
+     <img width="89" alt="m3" src="https://github.com/user-attachments/assets/b9654096-6ada-4913-87ed-fd6e93ec35ac">
+     
+     Dapat dilihat bahwa pada *dataframe* `users` terdapat atribut yang memiliki nilai kosong atau *null*, yaitu pada atribut `age` sebanyak 110.762 data.
+
+- **Pengecekkan Duplicate Data**
+
+  Pengecekan data duplikat dilakukan untuk memastikan tidak ada baris atau entri data yang muncul lebih dari sekali, yang dapat memengaruhi hasil analisis. Untuk memeriksa adanya data duplikat atau data yang sama dalam sebuah dataframe, kita dapat menggunakan fungsi `.duplicated().sum()`. Berikut ini adalah hasil pengecekan duplicate pada setiap data yang digunakan.
+  
+  <img width="232" alt="11" src="https://github.com/user-attachments/assets/17018bc7-3603-4603-94da-2d61d81c231b">
+
+   Berdasarkan gambar di atas, dapat disimpulkan bahwa data telah bersih dari duplikasi. Hal ini menunjukkan bahwa setiap baris data kini bersifat unik, tanpa adanya pengulangan entri. Dengan demikian, data siap digunakan untuk analisis atau pemrosesan lebih lanjut tanpa khawatir akan bias akibat adanya data duplikat.
+
+## Data Preparation
+Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi format yang sesuai untuk proses pemodelan. Tahap ini sangat penting untuk memastikan bahwa model dapat bekerja secara optimal dengan data yang bersih, terstruktur, dan relevan. Proses data preparation melibatkan beberapa langkah utama, yaitu:
+
 - **Mengubah Nama Kolom**
   
   Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
@@ -159,54 +194,45 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
 
   <img width="281" alt="b" src="https://github.com/user-attachments/assets/157e3738-fdbc-4946-8e48-8187a33befad">
 
-- **Pengecekkan Missing Value**
-
-  Missing value adalah nilai yang hilang atau tidak ada dalam sebuah dataset. Hal ini terjadi ketika data tidak tersedia atau tidak tercatat untuk suatu entri atau atribut tertentu. Missing value sering ditemukan dalam berbagai bentuk, seperti kosong, NaN (Not a Number), atau null, dan bisa muncul karena berbagai alasan, seperti kesalahan pengumpulan data, ketidaksesuaian antara sumber data, atau kelalaian dalam pencatatan. Pengecekan *missing value* pada *dataframe* dapat dilakukan dengan menggunakan fungsi `.isnull().sum()`, yang akan menghasilkan total jumlah data yang kosong atau hilang (*missing*).
-
-  Pada pembuatan Book Recommendation System ini beberapa data ditemuka terdapat missing value yaitu pada **dataframe books**, sehingga data yang missing tersebut harus dihapus. Berikut ini adalah penemuan missing value pada data books :
-  
-  <img width="217" alt="c" src="https://github.com/user-attachments/assets/80763b64-2e3d-4321-9e1e-82a673bebb29">
-  
-  Dapat dilihat bahwa pada dataframe books terdapat beberapa atribut yang memiliki nilai kosong atau null, yaitu pada kolom book_author sebanyak 2 data, publisher sebanyak 2 data, dan image_l_url sebanyak 3 data. Oleh karena itu, data yang kosong tersebut dapat dihapus dengan menggunakan fungsi .dropna(). Setelah penghapusan, pengecekan ulang akan menunjukkan bahwa tidak ada lagi data yang kosong atau null. Berikut ini setelah penghapusan missing value :
-  
-  <img width="228" alt="d" src="https://github.com/user-attachments/assets/e056287e-3002-427c-81ce-3a825234b6ad">
-
-  Pada **dataframe ratings**, tidak ditemukan adanya *missing value*. Dpat dilihat pada gambar dibawah ini :
-  
-  <img width="274" alt="e" src="https://github.com/user-attachments/assets/c5ed10e9-d145-43dc-97cf-0164aa1921d1">
-
-  Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan, dan hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
-  
-  <img width="689" alt="8" src="https://github.com/user-attachments/assets/8a3bcb03-eecd-4451-97c5-85fca4ec2912">
-
-  Berdasarkan hasil visualisasi grafik histogram di atas, rating 0 telah di hapus dan distribusi frekuensi data terlihat lebih rapih dan jelas. Terutama pada rating 1 hingga rating 4.
-
-  Missing value selanjutnya ada pada **dataframe users**. Terdapat sebanyak 110.762 missing value pada fitur `age`. Sehingga mengharuskan data tersebut untuk diisi dengan nilai modus dalam data `age` atau usia. Berikut ini adalah missing value pada data `age`.
-  
-  <img width="135" alt="9" src="https://github.com/user-attachments/assets/48bd1d14-c8e9-4599-a606-86da957640f2">
-
-  Berikut ini adalah hasil visualisasi grafik histogram umur.
-
-  <img width="371" alt="10" src="https://github.com/user-attachments/assets/ba2541d1-49a0-4d46-8b13-94872143d590">
-
-  Dari grafik di atas dapat dilihat bahwa umur pengguna paling banyak berada pada rentang usia 20 hingga 30 tahun.
-
-- **Pengecekkan Duplicate Data**
-
-  Pengecekan data duplikat dilakukan untuk memastikan tidak ada baris atau entri data yang muncul lebih dari sekali, yang dapat memengaruhi hasil analisis. Untuk memeriksa adanya data duplikat atau data yang sama dalam sebuah dataframe, kita dapat menggunakan fungsi `.duplicated().sum()`. Berikut ini adalah hasil pengecekan duplicate pada setiap data yang digunakan.
-  
-  <img width="232" alt="11" src="https://github.com/user-attachments/assets/17018bc7-3603-4603-94da-2d61d81c231b">
-
-   Berdasarkan gambar di atas, dapat disimpulkan bahwa data telah bersih dari duplikasi. Hal ini menunjukkan bahwa setiap baris data kini bersifat unik, tanpa adanya pengulangan entri. Dengan demikian, data siap digunakan untuk analisis atau pemrosesan lebih lanjut tanpa khawatir akan bias akibat adanya data duplikat.
-
 - **Penggabungan Data Buku dan Rating**
 
   Proses penggabungan (merge) dilakukan untuk mengintegrasikan data dari dataframe buku dan dataframe rating menjadi satu dataframe yang komprehensif. Dengan langkah ini, informasi yang sebelumnya terpisah dapat digabungkan, sehingga mempermudah analisis atau pemodelan lebih lanjut.
 
   <img width="809" alt="18" src="https://github.com/user-attachments/assets/8363f9dc-38ad-48b8-8b04-6e494abbfc73">
 
-## Data Preparation
-Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi format yang sesuai untuk proses pemodelan. Tahap ini sangat penting untuk memastikan bahwa model dapat bekerja secara optimal dengan data yang bersih, terstruktur, dan relevan. Proses data preparation melibatkan beberapa langkah utama, yaitu:
+- **Handling Missing value**
+  
+  Handling Missing Value adalah proses yang dilakukan untuk menangani data yang hilang atau tidak lengkap dalam dataset. Data yang hilang dapat menyebabkan masalah dalam analisis atau pelatihan model, sehingga perlu ditangani dengan cara yang sesuai agar hasil analisis tetap valid dan akurat. Berikut ini adalah tahapan yang dilakukan
+
+  - Book
+    
+    Seperti yang kita tahu bahwa pada data ini terdapat nilai null pada kolom book_author sebanyak 2 data, publisher sebanyak 2 data, dan image_l_url sebanyak 3 data. Oleh karena itu, data yang kosong tersebut dapat dihapus dengan menggunakan fungsi .dropna().
+    
+    <img width="226" alt="m1 1" src="https://github.com/user-attachments/assets/538f088f-6d17-4767-b9e6-50eb45a3ecd9">
+    
+    Dapat dilihat dari gambar di atas setelah penghapusan, pengecekan ulang akan menunjukkan bahwa tidak ada lagi data yang kosong atau *null*.
+
+  - Rating
+    
+    Pada dataframe ini memang tidak ditemukan adanya missing value didalamnya. Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan, dan hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
+    
+    <img width="689" alt="8" src="https://github.com/user-attachments/assets/8a3bcb03-eecd-4451-97c5-85fca4ec2912">
+    
+    Berdasarkan hasil visualisasi grafik histogram di atas, rating 0 telah di hapus dan distribusi frekuensi data terlihat lebih rapih dan jelas. Terutama pada rating 1 hingga rating 4.
+
+  - User
+    
+    Dataframe `user` memiliki sebanyak 110.762 *missing value* pada fitur `age`, sehingga diperlukan penanganan untuk mengisi data yang hilang tersebut. Dalam kasus ini, data yang kosong akan diisi dengan nilai modus, yaitu nilai yang paling sering muncul dalam data `age`. Proses ini dilakukan menggunakan fungsi `.fillna()` dan `.mode()` untuk menggantikan *missing value* dengan nilai modus secara otomatis.
+    
+    <img width="299" alt="m3 1" src="https://github.com/user-attachments/assets/c7e79eb9-ff79-4a30-9627-dd7f4255be84">
+    
+    Berikut ini adalah hasil visualisasi grafik histogram umur.
+    
+    <img width="371" alt="10" src="https://github.com/user-attachments/assets/ba2541d1-49a0-4d46-8b13-94872143d590">
+    
+    Dari grafik di atas dapat dilihat bahwa umur pengguna paling banyak berada pada rentang usia 20 hingga 30 tahun.
+  
+Setelah melewati tahap preparation di atas, selanjutnya adalah tahap preparation pada masing-masing pendekatan : 
 1. **Content-Based Filtering**
 
    Pada metode content-based recommendation, dilakukan analisis terhadap deskripsi atau informasi terkait item untuk menemukan item lain yang serupa berdasarkan konten. Salah satu pendekatan yang digunakan adalah dengan menerapkan TF-IDF (Term Frequency-Inverse Document Frequency). *Term Frequency Inverse Document Frequency Vectorizer* `TF-IDF Vectorizer` *Algorithm* merupakan algoritma yang dapat melakukan kalkulasi dan transformasi dari teks mentah menjadi representasi angka yang memiliki makna tertentu dalam bentuk matriks serta dapat digunakan dan dimengerti oleh model *machine learning*. Berikut adalah tahapan yang dilakukan :
@@ -392,7 +418,7 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
 
    <img width="290" alt="17" src="https://github.com/user-attachments/assets/5656552e-87c9-413c-aad3-fc8624fa2251">
 
-   Dari hasil rekomendasi di atas, diketahui bahwa proses rekomendasi menghasilkan beberapa judul buku yang memiliki kemiripan tertentu dengan buku 'Proxies'. Namun, terdapat beberapa duplikasi pada hasil rekomendasi, seperti "Like Water for Chocolate" yang muncul lebih dari satu kali. Hal ini menunjukkan bahwa sistem rekomendasi dapat ditingkatkan lebih lanjut untuk mengeliminasi duplikasi dalam hasilnya, sehingga rekomendasi menjadi lebih akurat dan beragam.
+   Dari hasil rekomendasi di atas, diketahui bahwa proses rekomendasi berhasil menghasilkan beberapa judul buku yang memiliki kemiripan tertentu dengan buku *'Proxies'*, berdasarkan analisis kesamaan konten melalui penghitungan **Cosine Similarity**. Proses ini menggunakan representasi vektor dari data buku untuk menentukan tingkat kemiripan antarjudul, menghasilkan rekomendasi dengan skor **precision** mencapai **88%**. Skor ini menunjukkan kemampuan sistem untuk secara akurat mengidentifikasi buku yang relevan sesuai dengan preferensi pengguna, memberikan dasar yang kuat untuk pengembangan sistem rekomendasi yang lebih optimal.
    
 3. **Collaborative Filtering**
 
