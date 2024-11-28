@@ -61,7 +61,15 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
 - **Books.csv**, memiliki atribut sebagai berikut :
   
   <img width="364" alt="1" src="https://github.com/user-attachments/assets/1c83e39e-3192-4882-87c4-0f683d9d7b61">
+  
+  **Penjelasan :**
+  - `RangeIndex` : Dataset memiliki 271,360 baris, dari indeks 0 hingga 271,359.
+  - `Data Columns` : Terdapat 8 kolom dalam dataset.
+  - `Non-Null Count` : Menunjukkan jumlah nilai yang tidak kosong dalam setiap kolom.
+  - `Dtype` : Menunjukan Tipe data dari setiap kolom.
+  - `Memory Usage` : Dataset menggunakan sekitar 16.6 MB memori di RAM.
 
+  Penjelasan kolom : 
   - `ISBN` : Merupakan kode unik *International Standard Book Number* berupa 10 atau 13 digit yang digunakan untuk mengidentifikasi buku secara internasional. Setiap buku memiliki ISBN yang berbeda.
   - `Book-Title` : Berisi judul buku yang dimasukkan dalam dataset. Judul ini digunakan untuk mengidentifikasi isi atau nama buku.
   - `Book-Author` : Nama penulis buku. Bisa berupa satu penulis atau lebih jika buku ditulis oleh beberapa orang.
@@ -69,46 +77,60 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
   - `Publisher` : Nama penerbit yang bertanggung jawab atas publikasi buku tersebut. Penerbit biasanya mengelola produksi, distribusi, dan pemasaran buku.
   - `Image-URL-S` : URL untuk gambar sampul buku dengan ukuran kecil. Biasanya digunakan untuk pratinjau cepat atau thumbnail.
   - `Image-URL-M` : URL untuk gambar sampul buku dengan ukuran sedang. Cocok untuk tampilan standar pada aplikasi atau website.
-  - `Image-URL-L` : URL untuk gambar sampul buku dengan ukuran besar. Berguna untuk tampilan detail.
+  - `Image-URL-L` : URL untuk gambar sampul buku dengan ukuran besar. Berguna untuk tampilan detail. 
   
 - **Ratings.csv**, memiliki atribut sebagai berikut :
 
   <img width="316" alt="2 0" src="https://github.com/user-attachments/assets/9778f6bd-e844-496c-933c-84d1159c48d5">
   
+  **Penjelasan :**
+  - `RangeIndex` : Dataset memiliki 1,149,780 baris, dari indeks 0 hingga 1,149,779.
+  - `Data Columns` : Terdapat 3 kolom dalam dataset.
+  - `Non-Null Count` : Menunjukkan jumlah nilai yang tidak kosong dalam setiap kolom. Semua kolom memiliki 1,149,780 nilai non-null, yang berarti tidak ada nilai yang hilang (NaN).
+  - `Dtype` : Menunjukan Tipe data dari setiap kolom.
+  -`Memory Usage` : Dataset menggunakan sekitar 26.3 MB memori di RAM.
+
+  Penjelasan kolom : 
   - `User-ID` : Menunjukkan ID unik yang diberikan kepada setiap pengguna yang memberikan rating untuk buku tertentu. Atribut ini digunakan untuk mengidentifikasi setiap pengguna dalam dataset.
   - `ISBN` : Merupakan kode ISBN *(International Standard Book Number)* yang digunakan untuk mengidentifikasi setiap buku secara unik. Setiap ISBN merepresentasikan satu buku yang dapat dinilai oleh pengguna. Atribut ini membantu menghubungkan rating dengan buku yang relevan.
   - `Book-Rating` : Merupakan rating yang diberikan oleh pengguna untuk buku tertentu. Nilai rating bervariasi dari 0 hingga 10, di mana nilai 0 kemungkinan menunjukkan buku yang belum dibaca atau tidak dinilai, sementara nilai yang lebih tinggi mencerminkan tingkat kepuasan pengguna terhadap buku tersebut.
+
+  Deskripsi statistik untuk *dataset* `ratings` pada fitur `Book-Rating` dapat dilihat pada gambar di bawah ini.
+
+  <img width="167" alt="12" src="https://github.com/user-attachments/assets/845cadb9-adb6-400a-bf99-421044aa271c">
+
+
+  Dari gambar di atas dapat dilihat bahwa terdapat,
+  - Total jumlah data (`count`) sebanyak 1.149.780;
+  - Rata-rata *rating* (`mean`) 3;
+  - Simpangan baku/standar deviasi *rating* (`std`) 4;
+  - *Rating* Minimal (`min`), kuartil bawah/Q1 *rating* (`25%`), kuartil tengah/Q2/median *rating* (`50%`) 0;
+  - Kuartil atas/Q3 *rating* (`75%`) 7;
+  - *Rating* maksimum (`max`) 10
+
+  Berikut adalah visualisasi grafik histogram frekuensi sebaran data *rating* pengguna terhadap buku yang sudah pernah dibaca, mulai dari *rating* terendah yaitu 1 hingga *rating* tertinggi yaitu 10.
+
+  <img width="720" alt="13" src="https://github.com/user-attachments/assets/e0f35fff-236a-4f2b-ae0f-ae458abe8184">
+
+
+  Berdasarkan hasil visualisasi grafik histogram "Jumlah Rating Buku", dapat disimpulkan bahwa rating yang paling sering diberikan pada buku yang telah dibaca adalah rating 0, dengan jumlah sekitar lebih dari 700.000. Rating 0 ini dapat menimbulkan bias dan mempengaruhi hasil analisis, sehingga data dengan rating 0 sebaiknya dihapus pada tahap persiapan data.
   
 - **Users.csv**, memiliki atribut sebagai berikut :
   
   <img width="293" alt="3" src="https://github.com/user-attachments/assets/c85e04a7-d63d-463f-84fa-b623d18ea5f2">
   
+  **Penjelasan :**
+  - `RangeIndex` : Dataset memiliki 278,858 baris, dari indeks 0 hingga 278,857.
+  - `Data Columns` : Terdapat 3 kolom dalam dataset.
+  - `Non-Null Count` : Menunjukkan jumlah nilai yang tidak kosong dalam setiap kolom:
+  - `Dtype` : Menunjukan Tipe data dari setiap kolom.
+  -`Memory Usage` : Dataset menggunakan sekitar 6.4 MB memori di RAM.
+
+  Penjelasan kolom :
   - `User-ID` : Identitas unik pengguna berupa bilangan bulat atau integer
   - `Location` : Lokasi tempat tinggal pengguna
   - `Age` : Umur pengguna
 
-Deskripsi statistik untuk *dataset* `ratings` pada fitur `Book-Rating` dapat dilihat pada gambar di bawah ini.
-
-<img width="167" alt="12" src="https://github.com/user-attachments/assets/845cadb9-adb6-400a-bf99-421044aa271c">
-
-
-Dari gambar di atas dapat dilihat bahwa terdapat,
-- Total jumlah data (`count`) sebanyak 1.149.780;
-- Rata-rata *rating* (`mean`) 3;
-- Simpangan baku/standar deviasi *rating* (`std`) 4;
-- *Rating* Minimal (`min`), kuartil bawah/Q1 *rating* (`25%`), kuartil tengah/Q2/median *rating* (`50%`) 0;
-- Kuartil atas/Q3 *rating* (`75%`) 7;
-- *Rating* maksimum (`max`) 10
-
-Berikut adalah visualisasi grafik histogram frekuensi sebaran data *rating* pengguna terhadap buku yang sudah pernah dibaca, mulai dari *rating* terendah yaitu 1 hingga *rating* tertinggi yaitu 10.
-
-<img width="720" alt="13" src="https://github.com/user-attachments/assets/e0f35fff-236a-4f2b-ae0f-ae458abe8184">
-
-
-Berdasarkan hasil visualisasi grafik histogram "Jumlah Rating Buku", dapat disimpulkan bahwa rating yang paling sering diberikan pada buku yang telah dibaca adalah rating 0, dengan jumlah sekitar lebih dari 700.000. Rating 0 ini dapat menimbulkan bias dan mempengaruhi hasil analisis, sehingga data dengan rating 0 sebaiknya dihapus pada tahap persiapan data.
-
-## Data Preparation
-Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing terlebih dahulu. Tahap Preprocessing data adalah langkah awal yang sangat penting dalam analisis data atau pemodelan *machine learning*. Proses ini bertujuan untuk memastikan bahwa data yang digunakan untuk pemodelan berada dalam kondisi yang optimal, bebas dari masalah yang dapat mempengaruhi hasil model. Berikut adalah beberapa tahapan umum dalam **preprocessing data** :
 - **Mengubah Nama Kolom**
   
   Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
@@ -128,22 +150,38 @@ Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing 
   
   Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
   
+  <img width="296" alt="a" src="https://github.com/user-attachments/assets/30262250-f59d-496b-92d9-17b6ae2abbb4">
+
+  
 - **Penggabungan Data User**
 
   Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
 
-Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke tahap **data preparation**. Di tahap ini, data sudah dalam kondisi yang siap untuk digunakan dalam pemodelan. **Proses data preparation sebagai berikut** : 
+  <img width="281" alt="b" src="https://github.com/user-attachments/assets/157e3738-fdbc-4946-8e48-8187a33befad">
+
 - **Pengecekkan Missing Value**
 
   Missing value adalah nilai yang hilang atau tidak ada dalam sebuah dataset. Hal ini terjadi ketika data tidak tersedia atau tidak tercatat untuk suatu entri atau atribut tertentu. Missing value sering ditemukan dalam berbagai bentuk, seperti kosong, NaN (Not a Number), atau null, dan bisa muncul karena berbagai alasan, seperti kesalahan pengumpulan data, ketidaksesuaian antara sumber data, atau kelalaian dalam pencatatan. Pengecekan *missing value* pada *dataframe* dapat dilakukan dengan menggunakan fungsi `.isnull().sum()`, yang akan menghasilkan total jumlah data yang kosong atau hilang (*missing*).
 
-  Pada pembuatan Book Recommendation System ini beberapa data ditemuka terdapat missing value yaitu pada dataframe books, sehingga data yang missing tersebut harus dihapus. Pada dataframe ratings, tidak ditemukan adanya *missing value*. Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan, dan hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
+  Pada pembuatan Book Recommendation System ini beberapa data ditemuka terdapat missing value yaitu pada **dataframe books**, sehingga data yang missing tersebut harus dihapus. Berikut ini adalah penemuan missing value pada data books :
+  
+  <img width="217" alt="c" src="https://github.com/user-attachments/assets/80763b64-2e3d-4321-9e1e-82a673bebb29">
+  
+  Dapat dilihat bahwa pada dataframe books terdapat beberapa atribut yang memiliki nilai kosong atau null, yaitu pada kolom book_author sebanyak 2 data, publisher sebanyak 2 data, dan image_l_url sebanyak 3 data. Oleh karena itu, data yang kosong tersebut dapat dihapus dengan menggunakan fungsi .dropna(). Setelah penghapusan, pengecekan ulang akan menunjukkan bahwa tidak ada lagi data yang kosong atau null. Berikut ini setelah penghapusan missing value :
+  
+  <img width="228" alt="d" src="https://github.com/user-attachments/assets/e056287e-3002-427c-81ce-3a825234b6ad">
+
+  Pada **dataframe ratings**, tidak ditemukan adanya *missing value*. Dpat dilihat pada gambar dibawah ini :
+  
+  <img width="274" alt="e" src="https://github.com/user-attachments/assets/c5ed10e9-d145-43dc-97cf-0164aa1921d1">
+
+  Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan, dan hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
   
   <img width="689" alt="8" src="https://github.com/user-attachments/assets/8a3bcb03-eecd-4451-97c5-85fca4ec2912">
 
   Berdasarkan hasil visualisasi grafik histogram di atas, rating 0 telah di hapus dan distribusi frekuensi data terlihat lebih rapih dan jelas. Terutama pada rating 1 hingga rating 4.
 
-  Missing value selanjutnya ada pada dataframe users. Terdapat sebanyak 110.762 missing value pada fitur `age`. Sehingga mengharuskan data tersebut untuk diisi dengan nilai modus dalam data `age` atau usia. Berikut ini adalah missing value pada data `age`.
+  Missing value selanjutnya ada pada **dataframe users**. Terdapat sebanyak 110.762 missing value pada fitur `age`. Sehingga mengharuskan data tersebut untuk diisi dengan nilai modus dalam data `age` atau usia. Berikut ini adalah missing value pada data `age`.
   
   <img width="135" alt="9" src="https://github.com/user-attachments/assets/48bd1d14-c8e9-4599-a606-86da957640f2">
 
@@ -167,6 +205,10 @@ Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke t
 
   <img width="809" alt="18" src="https://github.com/user-attachments/assets/8363f9dc-38ad-48b8-8b04-6e494abbfc73">
 
+## Data Preparation
+Sebelum masuk ke tahap data preparation, kita harus melalui tahap preprocessing terlebih dahulu. Tahap Preprocessing data adalah langkah awal yang sangat penting dalam analisis data atau pemodelan *machine learning*. Proses ini bertujuan untuk memastikan bahwa data yang digunakan untuk pemodelan berada dalam kondisi yang optimal, bebas dari masalah yang dapat mempengaruhi hasil model. Berikut adalah beberapa tahapan umum dalam **preprocessing data** :
+
+Setelah selesai melakukan tahap preprocessing, selanjutnya bisa melanjutkan ke tahap **data preparation**. Di tahap ini, data sudah dalam kondisi yang siap untuk digunakan dalam pemodelan. **Proses data preparation sebagai berikut** : 
 
 ## Modeling and Result
 Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai sistem rekomendasi untuk memberikan rekomendasi buku terbaik kepada pengguna, menggunakan beberapa algoritma sistem rekomendasi.  
@@ -279,8 +321,18 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
 ## Evaluation
 1. **Content-Based Filtering**
 
-   Sistem rekomendasi Content-Based Filtering yang dibangun berhasil memberikan rekomendasi buku berdasarkan kemiripan konten antara buku yang telah dibaca pengguna dengan buku lainnya. Masih menggunakan data yang sama pada tahap [Modeling](#modeling 'Modeling') *content-based recommendation*, pada proses Hasil *Top-N Recommendation*, yaitu penulis buku atau `book_author` Laura, akan dilakuakn proses pencarian jumlah judul buku atau `book_title` dengan penulis atau *author* yang sama. Pencarian tersebut menggunakan variabel baru yang di mana akan mengambil sebuah data buku yang telah dibaca oleh pengguna. Hasil dari Top-N Recommendation mendapatka beberapa rekomendasi judul buku seperti pada gambar berikut :
+   Sistem rekomendasi Content-Based Filtering yang dibangun berhasil memberikan rekomendasi buku berdasarkan kemiripan konten antara buku yang telah dibaca pengguna dengan buku lainnya. Teknik Evaluasi yang digunakan untuk content-based filtering adalah dengan menggunakan precission, rumus dari teknik ini adalah :
    
+   $$P = \frac{\text{Jumlah rekomendasi yang relevan}}{\text{Jumlah total item yang direkomendasikan}}$$
+
+   **Penjelasan:**
+   - **Jumlah rekomendasi yang relevan:** Ini adalah jumlah item yang direkomendasikan oleh sistem yang sesuai dengan kebutuhan atau preferensi pengguna. Artinya, item ini dianggap bermanfaat atau relevan oleh pengguna.
+   - **Jumlah total** item yang direkomendasikan: Ini adalah jumlah keseluruhan item yang direkomendasikan oleh sistem, termasuk yang relevan maupun yang tidak relevan.
+     
+   Precision adalah salah satu metrik evaluasi yang digunakan untuk mengukur keakuratan rekomendasi dalam sistem rekomendasi. Precision menunjukkan proporsi item yang direkomendasikan dan relevan dibandingkan dengan jumlah total item yang direkomendasikan.
+
+   Masih menggunakan data yang sama pada tahap [Modeling](#modeling 'Modeling') *content-based recommendation*, pada proses Hasil *Top-N Recommendation*, yaitu penulis buku atau `book_author` Laura, akan dilakuakn proses pencarian jumlah judul buku atau `book_title` dengan penulis atau *author* yang sama. Pencarian tersebut menggunakan variabel baru yang di mana akan mengambil sebuah data buku yang telah dibaca oleh pengguna. Hasil dari Top-N Recommendation mendapatka beberapa rekomendasi judul buku seperti pada gambar berikut :
+
    <img width="290" alt="17" src="https://github.com/user-attachments/assets/5656552e-87c9-413c-aad3-fc8624fa2251">
    
 3. **Collaborative Filtering**
