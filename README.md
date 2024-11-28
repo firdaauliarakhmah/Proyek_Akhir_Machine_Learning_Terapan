@@ -299,6 +299,7 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
    
      <img width="186" alt="r" src="https://github.com/user-attachments/assets/8b3f2d8b-e00b-4f5a-9524-e19b958be0c5">
      
+     
      <img width="767" alt="15" src="https://github.com/user-attachments/assets/3c6d9085-2b0f-47a8-82d8-01f370f3d579">
 
      Selanjutnya untuk membuat fungsi rekomendasi. Top-N Recommendation adalah langkah akhir dalam sistem rekomendasi di mana algoritma memilih sejumlah buku (N) dengan nilai kesamaan tertinggi terhadap buku yang sedang dicari atau yang sudah dinikmati oleh pengguna. Buku-buku ini disusun berdasarkan skor kesamaan, sehingga sistem dapat memberikan rekomendasi yang paling relevan dan menarik bagi pengguna. Hasil pengujian sistem rekomendasi dengan pendekatan content-based recommendation adalah sebagai berikut.
