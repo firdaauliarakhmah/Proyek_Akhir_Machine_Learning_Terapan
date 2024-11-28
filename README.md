@@ -310,8 +310,8 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
      <img width="290" alt="17" src="https://github.com/user-attachments/assets/870679e3-26a7-4c9f-9e40-2c130afbee43">
 
      Sistem yang telah dibangun berhasil memberikan rekomendasi beberapa judul buku berdasarkan input judul buku "Proxies", dan menghasilkan daftar buku yang relevan berdasarkan perhitungan yang dilakukan oleh sistem.
-     
-  Kelebihan dan kekurangan Content-based Filtering : 
+   
+   Kelebihan dan kekurangan Content-based Filtering : 
        
        Kelebihan :
        1. Rekomendasi sangat dipersonalisasi berdasarkan preferensi pengguna sebelumnya, yang memastikan relevansi yang lebih tinggi.
@@ -323,11 +323,12 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
        2. Sistem cenderung merekomendasikan item yang serupa dengan yang telah ada, yang bisa membatasi variasi rekomendasi dan tidak membantu pengguna menemukan item yang berbeda atau baru.
        3. Jika item baru tidak memiliki cukup data atau deskripsi, sistem kesulitan memberikan rekomendasi yang relevan.
      
-2. **Collaborative Filtering**
+3. **Collaborative Filtering**
 
    Collaborative Filtering adalah teknik rekomendasi yang memberikan saran item kepada pengguna berdasarkan preferensi pengguna lain yang memiliki kesamaan pola atau perilaku dengan pengguna tersebut. Teknik ini biasanya menggunakan data seperti rating yang diberikan oleh pengguna terhadap item misalnya buku untuk mengidentifikasi pola atau kesamaan dengan pengguna lainnya. Kemudian, item yang disukai oleh pengguna yang memiliki kesamaan preferensi akan direkomendasikan kepada pengguna yang belum memilih atau memberi rating pada item tersebut. Pada tahap pembuatan model akan menggunakan kelas `RecommenderNet` dengan `keras model class`
    
    - RecommenderNet
+
      RecommenderNet adalah model Neural Collaborative Filtering yang dirancang untuk memberikan rekomendasi kepada pengguna berdasarkan interaksi mereka dengan item (seperti buku). Model ini menggunakan embedding untuk memetakan pengguna dan item ke dalam ruang vektor berdimensi rendah, sehingga memungkinkan model untuk menangkap hubungan yang lebih kompleks antara keduanya. Proses utamanya melibatkan vektor embedding untuk pengguna dan item yang dihitung melalui produk titik (dot product), kemudian ditambahkan dengan bias pengguna dan item untuk mengakomodasi preferensi atau popularitas yang lebih umum. Hasil dari interaksi ini diproses dengan fungsi aktivasi sigmoid, yang menghasilkan nilai antara 0 dan 1, mencerminkan kemungkinan apakah seorang pengguna akan menyukai atau berinteraksi dengan item tertentu. Model ini efektif dalam memahami pola preferensi pengguna dan memberikan rekomendasi yang relevan berdasarkan data historis yang ada.
      
      <img width="461" alt="t" src="https://github.com/user-attachments/assets/d0f95c8a-3e79-4000-a3c8-420ab7b4d3c3">
@@ -360,17 +361,17 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
 
       Dapat dibandingkan antara daftar ***Book with high ratings from user*** dan ***Top 10 Books Recommendation***, terdapat beberapa kesesuaian pola rekomendasi berdasarkan preferensi pengguna. Hal ini menunjukkan bahwa sistem yang dibangun dapat memberikan rekomendasi buku kepada pengguna dengan hasil yang relevan dan sesuai prediksi.
 
-  Kelebihan dan kekurangan Collaborative Filtering : 
+     Kelebihan dan kekurangan Collaborative Filtering : 
        
-       Kelebihan :
-       1. Tidak membutuhkan pemahaman mendalam mengenai konten item yang dianalisis.
-       2. Dapat Menemukan Rekomendasi Baru.
-       3. Bisa memberikan rekomendasi yang lebih beragam dan tidak terbatas pada item serupa dengan yang sudah ada.
+         Kelebihan :
+         1. Tidak membutuhkan pemahaman mendalam mengenai konten item yang dianalisis.
+         2. Dapat Menemukan Rekomendasi Baru.
+         3. Bisa memberikan rekomendasi yang lebih beragam dan tidak terbatas pada item serupa dengan yang sudah ada.
       
-       Kekurangan :
-       1. Sistem kesulitan memberikan rekomendasi untuk pengguna baru (user cold start) atau item baru (item cold start) yang tidak memiliki cukup data interaksi untuk dianalisis.
-       2. Ketika jumlah item sangat besar, komputasi untuk mencari kesamaan antar pengguna atau item bisa menjadi sangat berat dan memerlukan waktu serta sumber daya yang besar.
-       3. Jika item sedikit sistem bisa kesulitan dalam menghasilkan rekomendasi yang akurat.
+         Kekurangan :
+         1. Sistem kesulitan memberikan rekomendasi untuk pengguna baru (user cold start) atau item baru (item cold start) yang tidak memiliki cukup data interaksi untuk dianalisis.
+         2. Ketika jumlah item sangat besar, komputasi untuk mencari kesamaan antar pengguna atau item bisa menjadi sangat berat dan memerlukan waktu serta sumber daya yang besar.
+         3. Jika item sedikit sistem bisa kesulitan dalam menghasilkan rekomendasi yang akurat.
 
        
 ## Evaluation
