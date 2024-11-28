@@ -331,9 +331,11 @@ Dari hasil analisis data sebelumnya, kita telah mengetahui bahwa jumlah data pad
      
    Precision adalah salah satu metrik evaluasi yang digunakan untuk mengukur keakuratan rekomendasi dalam sistem rekomendasi. Precision menunjukkan proporsi item yang direkomendasikan dan relevan dibandingkan dengan jumlah total item yang direkomendasikan.
 
-   Masih menggunakan data yang sama pada tahap [Modeling](#modeling 'Modeling') *content-based recommendation*, pada proses Hasil *Top-N Recommendation*, yaitu penulis buku atau `book_author` Laura, akan dilakuakn proses pencarian jumlah judul buku atau `book_title` dengan penulis atau *author* yang sama. Pencarian tersebut menggunakan variabel baru yang di mana akan mengambil sebuah data buku yang telah dibaca oleh pengguna. Hasil dari Top-N Recommendation mendapatka beberapa rekomendasi judul buku seperti pada gambar berikut :
+   Masih menggunakan data yang sama pada tahap Modeling content-based recommendation, pada proses hasil Top-N Recommendation, akan dilakukan proses pencarian judul buku atau book_title yang memiliki kemiripan berdasarkan data buku yang telah dibaca oleh pengguna, yaitu 'Proxies'. Hasil dari Top-N Recommendation mendapatkan beberapa rekomendasi judul buku seperti pada tabel berikut:
 
    <img width="290" alt="17" src="https://github.com/user-attachments/assets/5656552e-87c9-413c-aad3-fc8624fa2251">
+
+   Dari hasil rekomendasi di atas, diketahui bahwa proses rekomendasi menghasilkan beberapa judul buku yang memiliki kemiripan tertentu dengan buku 'Proxies'. Namun, terdapat beberapa duplikasi pada hasil rekomendasi, seperti "Like Water for Chocolate" yang muncul lebih dari satu kali. Hal ini menunjukkan bahwa sistem rekomendasi dapat ditingkatkan lebih lanjut untuk mengeliminasi duplikasi dalam hasilnya, sehingga rekomendasi menjadi lebih akurat dan beragam.
    
 3. **Collaborative Filtering**
 
